@@ -1,0 +1,56 @@
+%{
+#include<stdio.h>
+%}
+
+%%
+   
+is |
+am |
+are |
+dancing |
+playing       	{ printf("%s: is a verb\n", yytext); }
+
+
+good |
+bad |
+polietly  {printf("%s: is a adverb \n",yytext);}
+
+
+at |
+above |
+between  { printf ("%s: is a preposition\n", yytext);}
+
+and |
+or |
+but		{ printf ("%s: is a conjunction\n", yytext);}
+
+
+my |
+Your |
+his |
+her 		{ printf("%s: is an adjective\n", yytext); }
+
+I |
+YOU |
+he |
+she |
+we |
+they 		{ printf("%s: in a pronoun\n", yytext); }
+
+[a-zA-Z]+ {printf("%s: don't recognize, might be a noun\n", yytext);}
+.|\n { ECHO; }
+
+%%
+
+
+int main ( )
+{ 
+ printf("Enter a string :- ");
+ yylex();
+ return 0;  
+}
+int yywrap(){
+return 1;}
+flex en.l.txt
+gcc .\lex.yy.c
+./a.exe
